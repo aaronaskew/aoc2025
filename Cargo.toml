@@ -1,0 +1,13 @@
+[workspace]
+resolver = "3"
+
+members = ["day-*"]
+
+[workspace.dependencies]
+nom = "8.0.0"
+nom_locate = "5.0.0"
+indicatif = "0.18.0"
+rayon = "1.8.0"
+itertools = "0.14.0"
+num-integer = "0.1.44"
+glam = "0.30.5"
