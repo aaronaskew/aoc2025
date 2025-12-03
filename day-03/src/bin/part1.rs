@@ -1,5 +1,3 @@
-use itertools::Itertools;
-
 fn main() {
     let input = include_str!("input.txt");
     let output = process(input);
@@ -7,25 +5,26 @@ fn main() {
 }
 
 fn process(input: &str) -> String {
-    input.lines().map(max_joltage).sum::<u32>().to_string()
+    input.lines().map(max_joltage).sum::<u64>().to_string()
 }
 
-fn max_joltage(bank: &str) -> u32 {
-    let bank: Vec<u32> = bank.chars().filter_map(|ch| ch.to_digit(10)).collect();
-
-    assert!(bank.len() >= 2);
-
-    (0..(bank.len() - 1))
-        .cartesian_product(1..bank.len())
-        .filter_map(|(i_left, i_right)| {
-            if i_left < i_right {
-                Some(bank[i_left] * 10 + bank[i_right])
-            } else {
-                None
-            }
+fn max_joltage(bank: &str) -> u64 {
+    let (i_first, first) = &bank[..(bank.len() - 1)]
+        .chars()
+        .enumerate()
+        .max_by(|(ia, a), (ib, b)| match a.cmp(b) {
+            std::cmp::Ordering::Less => std::cmp::Ordering::Less,
+            std::cmp::Ordering::Equal => ib.cmp(ia),
+            std::cmp::Ordering::Greater => std::cmp::Ordering::Greater,
         })
+        .expect("max should be gettable");
+
+    let second = &bank[(*i_first + 1)..]
+        .chars()
         .max()
-        .expect("should find max")
+        .expect("max should be gettable");
+
+    format!("{first}{second}").parse().expect("should parse")
 }
 
 #[cfg(test)]
