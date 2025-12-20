@@ -1,0 +1,13 @@
+[package]
+name = "day-09"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+nom.workspace = true
+glam.workspace = true
+itertools.workspace = true
+
+
+
+

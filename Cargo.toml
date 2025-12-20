@@ -11,3 +11,6 @@ rayon = "1.8.0"
 itertools = "0.14.0"
 num-integer = "0.1.44"
 glam = "0.30.5"
+
+[profile.release]
+debug = true
