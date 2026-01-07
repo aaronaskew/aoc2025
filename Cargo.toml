@@ -10,8 +10,9 @@ indicatif = "0.18.0"
 rayon = "1.8.0"
 itertools = "0.14.0"
 num-integer = "0.1.44"
-glam = "0.30.9"
-z3 = "0.19.6"
+glam = "0.30.10"
+z3 = "0.19.7"
+pathfinding = "4.14.0"
 
 [profile.release]
 debug = true
